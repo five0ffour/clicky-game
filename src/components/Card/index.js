@@ -5,9 +5,13 @@ import "./style.css";
 function Card(props) {
 
   return (
-    <Col size="md-3">
-    <img alt="Game Card" src={props.image} />
-    </Col>
+      <div
+        className="Card"
+        role="img"
+        aria-label="Card Image"
+        style={{backgroundImage: `url(${props.cardinfo.image})`}}>
+        {props.cardinfo.title}
+      </div>
   );
 }
 

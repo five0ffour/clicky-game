@@ -1,65 +1,42 @@
-import React from "react"
-import Container from "../components/Container";
-import Row from "../components/Row";
-import Col from "../components/Col";
+import React, { Component } from "react";
+import Jumbotron from "../components/Jumbotron";
+import { Col, Row, Container } from "../components/Grid";
+import { List, ListItem } from "../components/List";
 import Card from "../components/Card";
+import CardSource from "../data/cards.json"
 
-function Gameboard() {
-  return (
-    <div>
-      <Container style={{ marginTop: 30 }}>
-        <Row>
-          <h3> Click on an image, but only once!</h3>
-        </Row>
+class GameBoard extends Component {
+  // Initialize this.state.books as an empty array
+  state = {
+    cards : []
+  };
 
-        <Row>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Bugs_Bunny.svg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Daffy_Duck.svg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/ElmerFudd.gif")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Foghorn_Leghorn.png")}/>
-          </Col>
-        </Row>
+  // Add code here to get all books from the database and save them to this.state.books
+   componentDidMount = () => {
+     console.log(JSON.stringify(CardSource,0,2));
+     this.setState({cards : CardSource.slice()});
+  }
 
+  render() {
+    return (
+      <Container>
         <Row>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Granny_(Looney_Tunes).png")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Heneryhawk.jpg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Marvin_the_Martian.svg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Speedy_Gonzales.svg")}/>
+          <Col size="md-12">
+            <Jumbotron>
+              <h3>To score a point, click on any image that you haven't clicked before</h3>
+            </Jumbotron>
           </Col>
         </Row>
-
         <Row>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Pepe_Le_Pew.svg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Sylvester_the_Cat.svg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Porky_Pig.svg")}/>
-          </Col>
-          <Col size="md-3">
-            <Card image={require("../assets/images/Quick_Draw_McGraw.png")}/>
+          <Col size="sm-3">
+            {this.state.cards.map(card => (
+                <Card cardinfo={card}></Card>
+            ))}
           </Col>
         </Row>
-
       </Container>
-    </div>
-  );
+    );
+  }
 }
 
-export default Gameboard;
+export default GameBoard;
