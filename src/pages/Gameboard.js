@@ -19,7 +19,7 @@ class GameBoard extends Component {
 
   render() {
     return (
-      <Container>
+      <Container >
         <Row>
           <Col size="md-12">
             <Jumbotron>
@@ -28,11 +28,11 @@ class GameBoard extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="sm-3">
             {this.state.cards.map(card => (
-                <Card cardinfo={card}></Card>
+            <Col size="lg-3">
+              <Card cardinfo={card}></Card>
+            </Col>
             ))}
-          </Col>
         </Row>
       </Container>
     );

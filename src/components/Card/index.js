@@ -5,12 +5,12 @@ import "./style.css";
 function Card(props) {
 
   return (
-      <div
-        className="Card"
+    <div
+        className="card"
         role="img"
         aria-label="Card Image"
         style={{backgroundImage: `url(${props.cardinfo.image})`}}>
-        {props.cardinfo.title}
+        <p className="cardTitle">{props.cardinfo.title}</p> 
       </div>
   );
 }
