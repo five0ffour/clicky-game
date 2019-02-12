@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import GameBoard from "./pages/Gameboard";
+import GameTableau from "./pages/GameTableau";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
@@ -12,7 +12,7 @@ function App() {
       <div>
         <Navbar />
         <Wrapper>
-          <Route exact path="/" component={GameBoard} />
+          <Route exact path="/" component={GameTableau} />
         </Wrapper>
         <Footer />
       </div>

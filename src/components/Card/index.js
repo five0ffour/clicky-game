@@ -1,5 +1,4 @@
 import React from "react"
-import Col from "../Col"
 import "./style.css";
 
 function Card(props) {
@@ -7,8 +6,10 @@ function Card(props) {
   return (
     <div
         className="card"
+        key={props.cardinfo.id}
         role="img"
         aria-label="Card Image"
+        onClick={() => props.clickHandler(props.cardinfo)}
         style={{backgroundImage: `url(${props.cardinfo.image})`}}>
         <p className="cardTitle">{props.cardinfo.title}</p> 
       </div>

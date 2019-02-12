@@ -31,8 +31,8 @@
 
   {
     "id": "6",
-    "title": "Henery Hawk",
-    "image" : "assets/images/Heneryhawk.jpg"
+    "title": "Tasmanian Devil",
+    "image" : "assets/images/Taz-Looney_Tunes.svg"
   },
 
   {
@@ -43,7 +43,7 @@
 
   {
     "id": "8",
-    "title": "Bugs Bunny",
+    "title": "Speedy Gonzales",
     "image" : "assets/images/Speedy_Gonzales.svg"
   },
 
