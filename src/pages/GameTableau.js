@@ -17,7 +17,6 @@ class GameTableau extends Component {
   }
 
   handleClickEvent = (card) => {
-      console.log(card.title);   
 
       let newCards = this.state.cards.slice();
       let match = newCards.find(c=>c.id === card.id);
@@ -40,9 +39,20 @@ class GameTableau extends Component {
 
       console.log("card clicked:  ", match);
 
+      // Resort the deck
+      newCards = this.shuffle(newCards);
+
       // Save state and trigger re-render
       this.setState({cards : newCards, gameOver : isGameOver});
   }
+
+  shuffle = (cards) => {
+    for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    return cards;
+}
 
   render() {
     return (
