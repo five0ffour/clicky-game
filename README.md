@@ -4,9 +4,10 @@ A memory game demonstrating a React application architecture
 try it at:  https://mbg-clicky-game.herokuapp.com  
   
 ## Overview    
-The game is an implementation of a memory card game.  The game will shuffle and display twelve cards.  The player chooses a card by clikcing on it.   If that card hasn't been chosen before, the user scores a point. If they've previously chose that card, the game ends.  The game keeps track of high scores and offers the user a new game.  
+The game is an implementation of a memory card game.  The game will shuffle and display twelve cards.  The player chooses a card by clikcing on it.   If that card hasn't been chosen before, the user scores a point. If they've previously chose that card, the game ends.  The game keeps track of high scores and automatically puts the user in a new game.  
   
 ## Demonstration of Functionality    
+![Looney Tunes Clicky Game](./docs/Looney-Tunes-Clicky-Game.gif)  
     
 
 ## Developer notes  
@@ -26,8 +27,8 @@ The game is an implementation of a memory card game.  The game will shuffle and 
     
 | Package/Interface | Version     | Description                                                              |
 | ----------------- | ----------- | ------------------------------------------------------------------------ |
-| Node.js           | __11.1.0__  | Main javascript engine for this application                              |
-  
+| React.js          | __16.8.1__  | Main javascript engine for this application                              |
+
 ## Authors    
 Michael Galarneau - Initial work - five0ffour  
 February, 2019  
