@@ -11,41 +11,73 @@ class GameTableau extends Component {
     gameOver : false
   };
 
-  // Add code here to get all books from the database and save them to this.state.books
+  // componentDidMount() - get all cards from the data file and save them to this state
    componentDidMount = () => {
      this.setState({cards : CardSource.slice()});
   }
 
+  gameOver = () => {
+      console.log("Game Over"); 
+      this.setState({gameOver : true});
+      this.props.handlers.scoreHandler({score : { current: 0, top: this.props.game.score.top}});
+      this.props.handlers.msgHandler("Game over!!  Try again");    
+  }
+
+    // safeMove() - fresh click on a unclicked card.
+    //             -Update score & click state for this card
+    //             - Save high score if relevant
+    safeMove = () => {
+      const newScore = this.props.game.score.current + 1; 
+      let  topScore = this.props.game.score.top;
+
+      topScore = (newScore > topScore) ? newScore : topScore;       
+      this.props.handlers.scoreHandler({score : { current: newScore, top: topScore}});
+  }
+
+  resetGame = () => {
+      this.setState({gameOver : false});
+      this.props.handlers.msgHandler("Good luck!!  Keep going");    
+      let newCards = this.state.cards.map((card) => {
+        card.clicked = false;
+        return card;
+      });
+      this.setState({cards : newCards}); 
+    }
+
+  // handleClickEvent() - main driver for game,  called for any click on a character card
+  //                    - fires off handlers to drive messsage
+  //                    - fires handlers to drive scoring
   handleClickEvent = (card) => {
 
       let newCards = this.state.cards.slice();
       let match = newCards.find(c=>c.id === card.id);
-      let isGameOver = false;
+
+      if (this.state.gameOver === true) {
+        this.resetGame();
+      }
 
       // Check if previously clicked
       if (match && 
           typeof match.clicked !== undefined &&
           match.clicked === true) {
 
-        // Previously clicked - Game over!
-        console.log("Game Over"); 
-        isGameOver = true;
-
+        // Dupe!  Game Over
+        this.gameOver(); 
       }
       else {
-        // Fresh Click - Update score & click state for this card
-        match.clicked=true;
+        match.clicked = true;
+        this.safeMove();
       }
-
-      console.log("card clicked:  ", match);
 
       // Resort the deck
       newCards = this.shuffle(newCards);
 
       // Save state and trigger re-render
-      this.setState({cards : newCards, gameOver : isGameOver});
+      this.setState({cards : newCards});
   }
 
+  // shuffle() - utlity function to randomly sort the card array  
+  // TODO: there are sort functions to do this, but this method is tested.  If it ain't broke, don't fix it.
   shuffle = (cards) => {
     for (let i = cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -54,6 +86,7 @@ class GameTableau extends Component {
     return cards;
 }
 
+  // render() - update the display based on the latest state
   render() {
     return (
       <Container >

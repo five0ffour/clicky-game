@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 
-function Banner() {
+function Banner(props) {
   return (
     <p className="Banner">
-      <span>Game messages here</span>
+      <span>{props.message}</span>
     </p>
   );
 }

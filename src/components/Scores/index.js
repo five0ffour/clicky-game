@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 
-function Scores() {
+function Scores(props) {
   return (
     <p className="Scores">
-      <span>Score : 0 | Top Score: 0</span>
+      <span>Score : {props.current} | Top Score: {props.top}</span>
     </p>
   );
 }
